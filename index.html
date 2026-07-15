@@ -1,0 +1,121 @@
+Love Project/
+│
+├── index.html
+├── style.css
+└── script.js
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>For You ❤️</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- Background -->
+
+    <div id="backgroundGlow"></div>
+
+    <!-- Floating Particles -->
+
+    <div id="particles"></div>
+
+    <!-- Main -->
+
+    <main>
+
+        <!-- Heart -->
+
+        <div id="heartContainer">
+
+            <svg id="heartSVG"
+                 viewBox="0 0 512 512">
+
+                <defs>
+
+                    <filter id="glow">
+
+                        <feGaussianBlur stdDeviation="6"
+                                        result="coloredBlur"/>
+
+                        <feMerge>
+
+                            <feMergeNode in="coloredBlur"/>
+
+                            <feMergeNode in="SourceGraphic"/>
+
+                        </feMerge>
+
+                    </filter>
+
+                </defs>
+
+                <path id="heartPath"
+
+                    d="
+                    M256 470
+
+                    C245 460
+                    140 360
+                    92 280
+
+                    C55 215
+                    60 130
+                    120 78
+
+                    C182 24
+                    245 48
+                    256 92
+
+                    C267 48
+                    330 24
+                    392 78
+
+                    C452 130
+                    457 215
+                    420 280
+
+                    C372 360
+                    267 460
+                    256 470
+                    " />
+
+            </svg>
+
+        </div>
+
+        <!-- Shine -->
+
+        <div id="shine"></div>
+
+        <!-- Text -->
+
+        <section id="messageBox">
+
+            <h1 id="title"></h1>
+
+            <p id="message"></p>
+
+        </section>
+
+    </main>
+
+    <!-- Cursor Light -->
+
+    <div id="cursorLight"></div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
