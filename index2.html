@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Untuk Kamu ❤️</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to bottom, #050816, #0b1230, #111c44);
+      position: relative;
+    }
+
+    /* Bintang */
+    .stars {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 3s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      from { opacity: 0.2; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1.4); }
+    }
+
+    .card {
+      width: 90%;
+      max-width: 500px;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(10px);
+      padding: 35px;
+      border-radius: 25px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      color: white;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+
+    h1, h2 {
+      color: #ffd6e7;
+      margin-bottom: 25px;
+    }
+
+    .button-area {
+      position: relative;
+      width: 100%;
+      height: 120px;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+      padding: 15px 35px;
+      border-radius: 50px;
+      font-size: 18px;
+      transition: .25s;
+    }
+
+    #yes {
+      background: #ff4f81;
+      color: white;
+      margin-right: 15px;
+    }
+
+    #yes:hover {
+      transform: scale(1.08);
+    }
+
+    #no {
+      background: #ececec;
+      color: #444;
+      position: absolute;
+    }
+
+    #message {
+      display: none;
+      animation: fade .8s;
+    }
+
+    #message p {
+      line-height: 1.8;
+      color: #f3f3f3;
+      font-size: 18px;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Hati jatuh */
+    .heart {
+      position: fixed;
+      top: -20px;
+      color: #ff5f8a;
+      font-size: 20px;
+      animation: fall linear forwards;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Bintang -->
+  <div class="stars" id="stars"></div>
+
+  <div class="card" id="question">
+    <h1>Maafkan aku ya? 🥺</h1>
+
+    <div class="button-area">
+      <button id="yes">Ya ❤️</button>
+      <button id="no">Tidak 🙃</button>
+    </div>
+  </div>
+
+  <div class="card" id="message">
+    <h2>Terima Kasih ❤️</h2>
+    <p>
+      Maaf ya sayang...
+      <br><br>
+      Malam ini aku benar-benar minta maaf karena aku terlalu fokus sama kegiatanku sampai gak sadar waktu udah berjalan begitu cepat.
+      <br><br>
+      Aku benar-benar gak lihat jam dan akhirnya gak sadar kalau ternyata kita udah ada janji buat date malam ini.
+      <br><br>
+      Aku tahu mungkin kamu nungguin aku, dan itu pasti bikin kamu kecewa. Itu murni kesalahanku.
+      <br><br>
+      Aku gak pernah ada niat buat mengabaikan kamu ataupun bikin kamu merasa gak diprioritaskan.
+      <br><br>
+      Terima kasih karena selalu sabar sama aku.
+      <br><br>
+      Aku janji bakal lebih perhatian sama waktu, terutama kalau itu tentang kita.
+      <br><br>
+      Aku sayang kamu, dan semoga kamu mau maafin aku malam ini. ❤️
+    </p>
+  </div>
+
+  <script>
+    // Membuat bintang
+    const starsContainer = document.getElementById("stars");
+    for (let i = 0; i < 120; i++) {
+      const star = document.createElement("div");
+      star.classList.add("star");
+      star.style.left = Math.random() * 100 + "%";
+      star.style.top = Math.random() * 100 + "%";
+      star.style.animationDuration = (Math.random() * 3 + 2) + "s";
+      starsContainer.appendChild(star);
+    }
+
+    // Tombol Tidak berpindah
+    const noBtn = document.getElementById("no");
+    const area = document.querySelector(".button-area");
+
+    function moveButton() {
+      const maxX = area.clientWidth - noBtn.offsetWidth;
+      const maxY = area.clientHeight - noBtn.offsetHeight;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    }
+
+    moveButton();
+
+    noBtn.addEventListener("mouseenter", moveButton);
+    noBtn.addEventListener("touchstart", function(e) {
+      e.preventDefault();
+      moveButton();
+    });
+
+    // Efek hati jatuh
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+      heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+
+    // Saat klik Ya
+    document.getElementById("yes").onclick = function() {
+      document.getElementById("question").style.display = "none";
+      document.getElementById("message").style.display = "block";
+
+      for (let i = 0; i < 40; i++) {
+        setTimeout(createHeart, i * 150);
+      }
+    };
+  </script>
+</body>
+</html>
